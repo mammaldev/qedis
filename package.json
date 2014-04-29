@@ -1,0 +1,28 @@
+{
+  "name": "qedis",
+  "version": "0.0.0",
+  "description": "A Q interface for https://github.com/mranney/node_redis",
+  "main": "index.js",
+  "dependencies": {
+    "q": "~1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mammaldev/qedis.git"
+  },
+  "keywords": [
+    "redis",
+    "q",
+    "promises"
+  ],
+  "author": "Oliver Relph",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mammaldev/qedis/issues"
+  },
+  "homepage": "https://github.com/mammaldev/qedis"
+}
