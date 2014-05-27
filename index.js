@@ -41,8 +41,8 @@ Qedis.prototype.blpop = function() {
   .fail(failureHandler)
 };
 
-Qedis.prototype.lrange = function(start, end) {
-  return Q.ninvoke(this.redisClient, 'lrange', start, end)
+Qedis.prototype.lrange = function(list, start, end) {
+  return Q.ninvoke(this.redisClient, 'lrange', list, start, end)
   .then(JSON.parse.bind(JSON))
   .fail(failureHandler)
 };
