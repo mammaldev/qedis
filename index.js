@@ -63,6 +63,11 @@ Qedis.prototype.rpush = function(list, obj) {
   .fail(failureHandler)
 };
 
+Qedis.prototype.sendCommand = function(command, args) {
+  return Q.ninvoke(this.redisClient, 'send_command', command, args)
+  .fail(failureHandler);
+};
+
 function failureHandler(err) {
   console.log(err.stack);
   throw err;
