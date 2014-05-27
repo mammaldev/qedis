@@ -4,7 +4,9 @@
   "description": "A Q interface for https://github.com/mranney/node_redis",
   "main": "index.js",
   "dependencies": {
-    "q": "~1.0.1"
+    "q": "~1.0.1",
+    "redis": "~0.10.3",
+    "hiredis": "~0.1.16"
   },
   "devDependencies": {},
   "scripts": {
