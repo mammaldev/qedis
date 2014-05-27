@@ -22,6 +22,16 @@
     "promises"
   ],
   "author": "Oliver Relph",
+  "contributors": [
+    {
+      "name": "Ollie Relph",
+      "email": "ollie@mammal.io"
+    },
+    {
+      "name": "Nick Cartwright",
+      "email": "nick@mammal.io"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mammaldev/qedis/issues"
