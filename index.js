@@ -47,6 +47,15 @@ Qedis.prototype.set = function(cacheKey, value) {
   });
 };
 
+Qedis.prototype.blpop = function() {
+  return Q.ninvoke.apply(Q, [this.redisClient, 'blpop'].concat([].slice.call(arguments)))
+  .then(JSON.parse.bind(JSON))
+  .fail(function(err) {
+    console.log(err);
+    throw err;
+  });
+};
+
 Qedis.prototype.lrange = function(start, end) {
   return Q.ninvoke(this.redisClient, 'lrange', start, end)
   .then(JSON.parse.bind(JSON))
