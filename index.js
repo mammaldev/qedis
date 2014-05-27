@@ -63,3 +63,11 @@ Qedis.prototype.lpush = function(list, obj) {
     throw err;
   });
 };
+
+Qedis.prototype.rpush = function(list, obj) {
+  return Q.ninvoke(this.redisClient, 'rpush', list, JSON.stringify(obj))
+  .fail(function(err) {
+    console.log(err);
+    throw err;
+  });
+};
