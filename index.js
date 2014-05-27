@@ -36,7 +36,8 @@ Qedis.prototype.set = function(cacheKey, value) {
 };
 
 Qedis.prototype.blpop = function() {
-  return Q.ninvoke.apply(Q, [this.redisClient, 'blpop'].concat([].slice.call(arguments)))
+  var listKeys = [].slice.call(arguments);
+  return Q.npost(this.redisClient, 'blpop', listKeys)
   .then(JSON.parse.bind(JSON))
   .fail(failureHandler)
 };
