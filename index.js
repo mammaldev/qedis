@@ -7,7 +7,11 @@ function Qedis(redisClient) {
 }
 
 Qedis.prototype.exists = function(cacheKey) {
-  return Q.ninvoke(this.redisClient, 'exists', cacheKey);
+  return Q.ninvoke(this.redisClient, 'exists', cacheKey)
+  .fail(function(err) {
+    console.log(err);
+    throw err;
+  });
 };
 
 Qedis.prototype.fetch = function(cacheKey) {
@@ -19,18 +23,28 @@ Qedis.prototype.fetch = function(cacheKey) {
         return self.get(key);
       })
     );
+  })
+  .fail(function(err) {
+    console.log(err);
+    throw err;
   });
 };
 
 Qedis.prototype.get = function(cacheKey) {
   return Q.ninvoke(this.redisClient, 'get', cacheKey)
-  .then(function(result) {
-    return JSON.parse(result);
+  .then(JSON.parse.bind(JSON))
+  .fail(function(err) {
+    console.log(err);
+    throw err;
   });
 };
 
 Qedis.prototype.set = function(cacheKey, value) {
-  return Q.ninvoke(this.redisClient, 'set', cacheKey, JSON.stringify(value));
+  return Q.ninvoke(this.redisClient, 'set', cacheKey, JSON.stringify(value))
+  .fail(function(err) {
+    console.log(err);
+    throw err;
+  });
 };
 
 Qedis.prototype.lpop = function(list) {
