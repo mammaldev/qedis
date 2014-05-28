@@ -38,13 +38,19 @@ Qedis.prototype.set = function(cacheKey, value) {
 Qedis.prototype.blpop = function() {
   var listKeys = [].slice.call(arguments);
   return Q.npost(this.redisClient, 'blpop', listKeys)
-  .then(JSON.parse.bind(JSON))
+  .spread(function(key, item) {
+    return JSON.parse(item);
+  })
   .fail(failureHandler);
 };
 
 Qedis.prototype.lrange = function(list, start, end) {
   return Q.ninvoke(this.redisClient, 'lrange', list, start, end)
-  .then(JSON.parse.bind(JSON))
+  .then(function(items) {
+    return items.map(function(item) {
+      return JSON.parse(item);
+    });
+  })
   .fail(failureHandler);
 };
 
