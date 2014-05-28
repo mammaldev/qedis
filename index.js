@@ -8,7 +8,7 @@ function Qedis(redisClient) {
 
 Qedis.prototype.exists = function(cacheKey) {
   return Q.ninvoke(this.redisClient, 'exists', cacheKey)
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.fetch = function(cacheKey) {
@@ -21,52 +21,52 @@ Qedis.prototype.fetch = function(cacheKey) {
       })
     );
   })
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.get = function(cacheKey) {
   return Q.ninvoke(this.redisClient, 'get', cacheKey)
   .then(JSON.parse.bind(JSON))
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.set = function(cacheKey, value) {
   return Q.ninvoke(this.redisClient, 'set', cacheKey, JSON.stringify(value))
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.blpop = function() {
   var listKeys = [].slice.call(arguments);
   return Q.npost(this.redisClient, 'blpop', listKeys)
   .then(JSON.parse.bind(JSON))
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.lrange = function(list, start, end) {
   return Q.ninvoke(this.redisClient, 'lrange', list, start, end)
   .then(JSON.parse.bind(JSON))
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.lpop = function(list) {
   return Q.ninvoke(this.redisClient, 'lpop', list)
   .then(JSON.parse.bind(JSON))
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.lpush = function(list, obj) {
   return Q.ninvoke(this.redisClient, 'lpush', list, JSON.stringify(obj))
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.rpush = function(list, obj) {
   return Q.ninvoke(this.redisClient, 'rpush', list, JSON.stringify(obj))
-  .fail(failureHandler)
+  .fail(failureHandler);
 };
 
 Qedis.prototype.sendCommand = function(command, args) {
   return Q.ninvoke(this.redisClient, 'send_command', command, args)
-  .fail(failureHandler);
+  .fail(failureHandler);;
 };
 
 function failureHandler(err) {
