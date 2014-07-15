@@ -81,6 +81,10 @@ Qedis.prototype.sendCommand = function(command, args) {
   .fail(failureHandler);
 };
 
+Qedis.prototype.setex = function (cacheKey, expirePeriod, value) {
+  return this.sendCommand('setex', [cacheKey, expirePeriod, jsonStringifyAndB64Encode(value)]);
+};
+
 function b64DecodeAndJSONParse( b64String ) {
   if ( b64String === null ) {
     return null;
