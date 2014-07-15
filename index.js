@@ -82,6 +82,9 @@ Qedis.prototype.sendCommand = function(command, args) {
 };
 
 function b64DecodeAndJSONParse( b64String ) {
+  if ( b64String === null ) {
+    return null;
+  }
   return JSON.parse(new Buffer(b64String, 'base64').toString('utf16le'));
 }
 
