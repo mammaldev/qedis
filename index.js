@@ -60,13 +60,19 @@ Qedis.prototype.lpop = function(list) {
   .fail(failureHandler);
 };
 
-Qedis.prototype.lpush = function(list, obj) {
-  return Q.ninvoke(this.redisClient, 'lpush', list, jsonStringifyAndB64Encode(obj))
+Qedis.prototype.lpush = function(list) {
+  var encodedItems = [].slice.call(arguments, 1).map(jsonStringifyAndB64Encode);
+  var args = [ list ].concat(encodedItems);
+
+  return Q.npost(this.redisClient, 'lpush', args)
   .fail(failureHandler);
 };
 
-Qedis.prototype.rpush = function(list, obj) {
-  return Q.ninvoke(this.redisClient, 'rpush', list, jsonStringifyAndB64Encode(obj))
+Qedis.prototype.rpush = function(list) {
+  var encodedItems = [].slice.call(arguments, 1).map(jsonStringifyAndB64Encode);
+  var args = [ list ].concat(encodedItems);
+
+  return Q.npost(this.redisClient, 'rpush', args)
   .fail(failureHandler);
 };
 
