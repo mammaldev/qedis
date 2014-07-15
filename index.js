@@ -56,7 +56,7 @@ Qedis.prototype.lrange = function(list, start, end) {
 
 Qedis.prototype.lpop = function(list) {
   return Q.ninvoke(this.redisClient, 'lpop', list)
-  .then(jsonStringifyAndB64Encode)
+  .then(b64DecodeAndJSONParse)
   .fail(failureHandler);
 };
 
