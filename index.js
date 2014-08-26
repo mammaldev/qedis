@@ -87,6 +87,19 @@ Qedis.prototype.sendCommand = function(command, args) {
   .fail(failureHandler);
 };
 
+Qedis.prototype.readonlyTransactionB64Decoded = function ( commands ) {
+  return Q.ninvoke(this.redisClient.multi(commands), 'exec')
+   .then(function ( data ) {
+    if ( Array.isArray(data) && Array.isArray(data[ 0 ]) ) {
+      return data[ 0 ].map(function ( item ) {
+        return b64DecodeAndJSONParse(item);
+      });
+    }
+    return data;
+  })
+  .fail(failureHandler);
+};
+
 Qedis.prototype.setex = function (cacheKey, expirePeriod, value) {
   return this.sendCommand('setex', [cacheKey, expirePeriod, jsonStringifyAndB64Encode(value)]);
 };
