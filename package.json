@@ -1,6 +1,6 @@
 {
   "name": "qedis",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A Q interface for https://github.com/mranney/node_redis",
   "main": "index.js",
   "dependencies": {
