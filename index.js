@@ -76,8 +76,8 @@ Qedis.prototype.rpush = function(list) {
   .fail(failureHandler);
 };
 
-Qedis.prototype.lindex = function(list, index) {
-  return this.sendCommand('lindex', [list, index])
+Qedis.prototype.lindex = function(key, index) {
+  return Q.ninvoke(this.redisClient, 'lindex', key, index)
   .then(b64DecodeAndJSONParse)
   .fail(failureHandler);
 };
